@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Dashboard">
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title ng-bind="PageTitle" ng-cloak>asd</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-rtl.css" rel="stylesheet">
+    <link href="css/loading-bar.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="MainLoading" ng-hide="ContentLoaded">
+      <svg xmlns="http://www.w3.org/2000/svg" width="135" height="140" viewBox="0 0 135 140" fill="#fff"><script id="tinyhippos-injected"/>
+        <rect y="30.1078" width="15" height="79.7845" rx="6">
+            <animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/>
+            <animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/>
+        </rect>
+        <rect x="30" y="42.6078" width="15" height="54.7845" rx="6">
+            <animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/>
+            <animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/>
+        </rect>
+        <rect x="60" width="15" height="139.569" rx="6" y="0.215536">
+            <animate attributeName="height" begin="0s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/>
+            <animate attributeName="y" begin="0s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/>
+        </rect>
+        <rect x="90" y="42.6078" width="15" height="54.7845" rx="6">
+            <animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/>
+            <animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/>
+        </rect>
+        <rect x="120" y="30.1078" width="15" height="79.7845" rx="6">
+            <animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/>
+            <animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+    </div>
+    <div class="container main" ng-class="{'show' : ContentLoaded}">
+      <div class="row" ng-controller="SideBarController">
+        <div class="toolbar col-md-10" ng-if="UserIsLogin">
+          <div ng-include="ToolbarSrc"></div>
+        </div>
+        <div class="sidebar col-md-2" ng-if="UserIsLogin">
+          <div class="profile_holder">
+            <img ng-src="/uploads/{{user.image}}" class="img-responsive" />
+            <span class="username">{{user.fname}} {{user.lname}}</span>
+            <button class="update_profile" ng-click="Profile()">پروفایل</button>
+          </div>
+          <div ng-include="MenuSrc" onload="MenuLoaded()"></div>
+        </div>
+        <div class="col-md-10 view" ui-view></div>
+      </div>
+    </div>
+    
+    <!-- CORE FILES -->
+    <script type="text/javascript" src="js/Lib/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Lib/angular.min.js"></script>
+    <script type="text/javascript" src="js/Lib/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="js/Lib/angular-animate.min.js"></script>
+    <script type="text/javascript" src="js/Lib/loading-bar.js"></script>
+    <script type="text/javascript" src="js/Lib/ui-bootstrap-tpls-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/Lib/ngStorage.min.js"></script>
+    <script type="text/javascript" src="js/Lib/satellizer.min.js"></script>
+    <script type="text/javascript" src="js/Lib/angular-messages.min.js"></script>
+    <script type="text/javascript" src="js/Lib/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="js/Lib/angular-input-decimal-separator.js"></script>
+    <script type="text/javascript" src="js/Lib/moment.min.js"></script>
+    <script type="text/javascript" src="js/Lib/moment-jalaali.js"></script>
+    <script type="text/javascript" src="js/Lib/clickoutside.directive.js"></script>
+    <script type="text/javascript" src="js/Lib/ng-file-upload.min.js"></script>
+    <!-- APP JS -->
+    <script type="text/javascript" src="js/Angular/app.js"></script>
+    <!-- SERVICE FILES -->
+    <script type="text/javascript" src="js/Angular/Service/HeaderConfigService.js"></script>
+    <script type="text/javascript" src="js/Angular/Service/ServerService.js"></script>
+    <script type="text/javascript" src="js/Angular/Service/DashboardService.js"></script>
+    <script type="text/javascript" src="js/Angular/Service/UserService.js"></script>
+    <script type="text/javascript" src="js/Angular/Service/ClientService.js"></script>
+    <script type="text/javascript" src="js/Angular/Service/ProductService.js"></script>
+    <script type="text/javascript" src="js/Angular/Service/InvoiceService.js"></script>
+    <script type="text/javascript" src="js/Angular/Service/SettingService.js"></script>
+    <!-- DIRECTIVE FILES -->
+    <script type="text/javascript" src="js/Angular/Directive/GeneralDirective.js"></script>
+    <!-- CONTROLLER FILES -->
+    <script type="text/javascript" src="js/Angular/Controller/LoginController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/RegisterController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/DashboardController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/ClientController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/DashboardController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/SideBarController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/ProductController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/InvoiceController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/AddInvoiceController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/EditInvoiceController.js"></script>
+    <script type="text/javascript" src="js/Angular/Controller/SettingController.js"></script>
+
+    <script type="text/ng-template" id="Profile.html">
+        <div class="modal-body">
+            <form name="Profile">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div ngf-drop="uploadFiles($file,$invalidFiles)" ng-class="{'form_error_validation': file == null &amp;&amp; Submited}" class="drop-box ng-pristine ng-untouched ng-valid ng-empty" ngf-drag-over-class="'dragover'" ngf-max-size="1000KB" ngf-multiple="false" ng-model="file" ng-hide="file" ngf-pattern="'image/*'" ngf-include-dir="true" style="">
+                            <div class="button add_file ng-pristine ng-untouched ng-valid ng-empty" ngf-select="uploadFiles($file,$invalidFiles)" ng-model="file" name="file" ngf-pattern="'image/*'" ngf-include-dir="true" ngf-max-size="1000KB" style="">
+                                <div class="image_upload_tutorial">
+                                    <div class="btn btn-default">آپلود عکس</div>
+                                </div>    
+                            </div>
+                        </div>
+                        <img ngf-src="file" class="img-responsive fileview">
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>نام</label>
+                            <input type="text" class="form-control" name="fname" ng-model="profile.fname" required autofocus />
+                            <div class="help-block" ng-messages="submitted && Profile.fname.$error">
+                                <div ng-message='required'> نام خود رو کامل کنید.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label>نام خانوادگی</label>
+                            <input type="text" class="form-control" name="lname" ng-model="profile.lname" required />
+                            <div class="help-block" ng-messages="submitted && Profile.fname.$error">
+                                <div ng-message='required'> نام خانوادگی خود رو کامل کنید.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button class="btn btn-block add_new_btn" ng-click="Submit(profile,$event,Profile.$valid)">بلی</button>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <button class="btn btn-block close_modal_btn" ng-click="Close()">خیر</button>
+            </div>
+        </div>
+    </script>
+  </body>
+</html>

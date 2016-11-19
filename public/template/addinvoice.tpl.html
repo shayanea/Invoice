@@ -1,0 +1,100 @@
+<div class="main_content conten_holder">
+    <form name="NewInvoice" class="invoice_holder" novalidate>
+        <div class="row">
+            <div class="col-md-3">
+                <label>تاریخ فاکتور</label>
+                <input class="form-control" ng-model="Date" readonly />
+            </div>
+            <div class="col-md-3">
+                <label>نام مشتری</label>
+                <input type="text" ng-class="{'red_border_bottom' : submitted && NewInvoice.client_name.$error}" ng-change="SearchName(invoice.client_name)" 
+                name="client_name" maxlength="50" ng-model="invoice.client_name" ng-model-options="{debounce : 1000}" class="form-control" required>
+                <div class="help-block" ng-messages="submitted && NewInvoice.client_name.$error">
+                    <div ng-message='required'> نام مشتری را کامل کنید.</div>
+                </div>
+                <ul class="suggest_name" ng-show="SuggestNameList" click-outside="SuggestNameList = !SuggestNameList">
+                    <li ng-repeat="item in SuggestName" ng-click="SelectName(item);CloseList()">
+                        {{item.name}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>نام کالا</th>
+                    <th>قیمت کالا</th>
+                    <th>تعداد کالا</th>
+                    <th>مجموع قیمت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in invoice.product_list track by $index">
+                    <td style="position:relative;">
+                        <input type="text" ng-class="{'red_border_bottom' : submitted && NewInvoice['name'+$index].$error}"
+                         class="form-control" name="name{{$index}}" ng-model="item.name"
+                        ng-change="SearchProduct(item.name,$index)" ng-model-options="{debounce : 1000}" required/>
+                        <div class="help-block" ng-messages="submitted && NewInvoice['name'+$index].$error">
+                            <div ng-message='required'> نام کالا خود رو کامل کنید.</div>
+                        </div>
+                        <ul class="suggest_name" ng-show="SuggestProductList[$index]" click-outside="SuggestProductList[$index] = !SuggestProductList[$index]">
+                            <li ng-repeat="item in SuggestProduct" ng-click="SelectProduct(item,$index);CloseProductSuggest($index);">
+                                {{item.name}}
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-class="{'red_border_bottom' : submitted && NewInvoice['price'+$index].$error}"
+                         name="price{{$index}}" ng-model="item.price" input-decimal-separator="3" maxlength="30" allow-only-numbers required/>
+                        <div class="help-block" ng-messages="submitted && NewInvoice['price'+$index].$error">
+                            <div ng-message='required'> قیمت کالا خود رو کامل کنید.</div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" ng-class="{'red_border_bottom' : submitted && NewInvoice['number'+$index].$error}"
+                         name="number{{$index}}" ng-model="item.number" maxlength="5" allow-only-numbers required/>
+                        <div class="help-block" ng-messages="submitted && NewInvoice['number'+$index].$error">
+                            <div ng-message='required'> تعداد کالا خود رو کامل کنید.</div>
+                        </div>
+                    </td>
+                    <td>{{item.price * item.number}}</td>
+                </tr>
+            </tbody>
+            <button class="add_new_row" ng-click="AddNewRow()">
+                درج کالا جدید
+            </button>
+        </table>
+        <table class="table table-condensed" style="margin-top: 40px;width:50%;">
+            <thead>
+                <tr>
+                    <th>مجموع کلی</th>
+                    <th>وضعیت تسویه</th>
+                    <th ng-hide="invoice.status">نحوه تسویه</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ getTotal()  | currency: '' : 0 : 'تومان'}}</td>
+                    <td>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="invoice.status"> 
+                            </label>
+                        </div>
+                    </td>
+                    <td ng-hide="invoice.status">
+                        <select class="form-control" ng-model="invoice.payment_type">
+                            <option value="1">نقدی</option>
+                            <option value="2">چکی</option>
+                            <option value="3">سفته</option>
+                            <option value="4">غیره</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="display:block;text-align:left;">
+            <button class="add_new_client" ng-click="AddNewInvoice(invoice,$event,NewInvoice.$valid)"> ثبت فاکتور</button>
+        </div>
+    </form>
+</div>

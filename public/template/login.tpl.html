@@ -1,0 +1,49 @@
+<div class="container" id="Login">
+	<div class="row">
+		<div class="col-md-4 col-sm-4 col-xs-4 center_col">
+			<div class="user_error slideInUp" ng-show="Error.Visisbility">
+				{{Error.Text}}
+			</div>
+			<form name="login" novalidation>
+				<div class="form-group">
+					<input type="email" name="email" ng-model="user.email"
+					class="form-control" placeholder="پست الکترونیکی" required autofocus >
+					<div class="help-block" ng-messages="submitted && login.email.$error">
+						<div ng-message='required'> ایمیل خود رو کامل کنید.</div>
+						<div ng-message='email'> ایمیل خود رو به درستی کامل کنید.</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="password" ng-minlength="6" name="password" ng-model="user.password"
+					class="form-control" placeholder="رمز عبور" required>
+					<div class="help-block" ng-messages="submitted && login.password.$error">
+						<div ng-message='required'> رمز عبور خود رو کامل کنید.</div>
+						<div ng-message='minlength'> رمز عبور حداقل 6 کارکتر است.</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<a href="#" class="forget_pass">فراموشی رمز عبور ؟</a>
+				</div>
+			</form>
+			<div class="col-md-6 col-sm-6 col-xs-6 login_btn">
+				<button type="submit" form="login" class="btn btn-block active_page" ng-click="Login(user,login.$valid,$event)">ورود</button>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6 register_btn">
+				<a href="" class="btn btn-block" ui-sref="register">ثبت نام</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" stroke="#fff">
+    <g fill="none" fill-rule="evenodd" stroke-width="2">
+        <circle cx="22" cy="22" r="19.9925">
+            <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
+            <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline" keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="22" cy="22" r="17.9022">
+            <animate attributeName="r" begin="-0.9s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
+            <animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1; 0" calcMode="spline" keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
+        </circle>
+    </g>
+</svg>-->

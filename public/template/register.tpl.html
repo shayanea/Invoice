@@ -1,0 +1,63 @@
+<div class="container" id="Register">
+	<div class="row">
+		<div class="col-md-4 col-sm-4 col-xs-4 center_col">
+			<div class="user_error slideInUp" ng-show="Error.Visisbility">
+				{{Error.Text}}
+			</div>
+			<form name="register" novalidation>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="text" name="fname" ng-model="user.fname" class="form-control" placeholder="نام" required>
+							<div class="help-block" ng-messages="submitted && register.fname.$error">
+								<div ng-message='required'> نام خود رو کامل کنید.</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="text" name="lname" ng-model="user.lname" class="form-control" placeholder="نام خانوادگی" required>
+							<div class="help-block" ng-messages="submitted && register.lname.$error">
+								<div ng-message='required'> نام خانوادگی خود رو کامل کنید.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="email" name="email" ng-model="user.email" class="form-control" placeholder="پست الکترنیکی" required>
+					<div class="help-block" ng-messages="submitted && register.email.$error">
+						<div ng-message='required'> ایمیل خود رو کامل کنید.</div>
+						<div ng-message='email'> ایمیل خود رو به درستی کامل کنید.</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="tel" name="tel" ng-maxlength="11" ng-minlength="10" ng-model="user.tel" allow-only-numbers class="form-control" placeholder="شماره همراه" required>
+					<div class="help-block" ng-messages="submitted && register.password.$error">
+						<div ng-message='required'> شماره همراه خود رو کامل کنید.</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" ng-minlength="6" ng-model="user.password"  class="form-control" placeholder="رمز عبور" required>
+					<div class="help-block" ng-messages="submitted && register.password.$error">
+						<div ng-message='required'> رمز عبور خود رو کامل کنید.</div>
+						<div ng-message='minlength'> رمز عبور حداقل 6 کارکتر است.</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<input type="password" name="retypepass" ng-minlength="6" ng-model="retypepass" class="form-control" password-match="user.password" placeholder="تأیید رمز عبور" required />
+					<div class="help-block" ng-messages="submitted && register.retypepass.$error">
+						<div ng-message='required'> تأیید رمز عبور خود رو کامل کنید.</div>
+						<div ng-message='minlength'> تأیید رمز عبور حداقل 6 کارکتر است.</div>
+						<div ng-message='unique'> کلمه عبور مطابقت ندارد.</div>
+					</div>
+				</div>
+			</form>
+			<div class="col-md-6 col-sm-6 col-xs-6 register_btn">
+				<button type="submit" form="register" class="btn btn-block active_page" ng-click="Register(user,register.$valid)">ثبت نام</button>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6 login_btn">
+				<a href="" class="btn btn-block" ui-sref="login">ورود</a>
+			</div>
+		</div>
+	</div>
+</div>

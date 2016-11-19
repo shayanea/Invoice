@@ -1,0 +1,24 @@
+<div class="main_content conten_holder">
+    <h2>تنظیمات کلی</h2>
+    <form name="Setting" class="setting_holder">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <label>نام شرکت</label>
+                <input class="form-control" type="text" name="name" ng-model="setting.name" maxlength="40" autofocus />
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <label>شماره تماس شرکت</label>
+                <input class="form-control" type="text" name="tel" ng-model="setting.tel" maxlength="40" autofocus />
+            </div>
+        </div>
+        <div class="row" style="margin-top:40px;">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <label>آدرس شرکت</label>
+                <textarea class="form-control" rows="4" ng-model="setting.address" maxlength="500"></textarea>
+            </div>
+        </div>
+        <div style="display:block;text-align:left;">
+            <button type="submit" class="add_new_client" ng-click="UpdateSetting(setting,$event)">ذخیره</button>
+        </div>
+    </form>
+</div>

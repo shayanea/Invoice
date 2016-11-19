@@ -106,7 +106,7 @@ config(['$stateProvider','$urlRouterProvider','appConfig','$locationProvider', f
     appversion:'0.0.1',
     appproducer:'Shayan Araghi',
     template: "template",
-    api: "http://localhost:3000/api/"
+    api: "https://invoice-management.herokuapp.com/api/"
 })
 
 // CHECK IF USER NOT AUTH GO TO LOGIN

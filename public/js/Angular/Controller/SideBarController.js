@@ -10,10 +10,6 @@ app.controller('SideBarController',function($scope,UserService,$auth,$state,appC
                     $scope.user.image = "default_user.jpg";
                 }
             });
-            $(function(){
-                var height = $('.sidebar').height();
-                $('.main_content').css('min-height',height - 70);
-            })
         }
     });
 

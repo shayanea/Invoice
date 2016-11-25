@@ -145,6 +145,8 @@ config(['$stateProvider','$urlRouterProvider','appConfig','$locationProvider', f
             $state.go('login');
         }
 
+        console.log($auth.isAuthenticated());
+
         // BROADCAST THAT USER IS AUTH
         $rootScope.$broadcast('CheckAuth',$auth.isAuthenticated());
     });

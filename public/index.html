@@ -6,11 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title ng-bind="PageTitle" ng-cloak></title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-rtl.css" rel="stylesheet">
-    <link href="css/loading-bar.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/general.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
@@ -43,13 +39,13 @@
         <div class="toolbar col-md-10" ng-if="UserIsLogin">
           <div ng-include="ToolbarSrc"></div>
         </div>
-        <div class="sidebar col-md-2" ng-if="UserIsLogin">
+        <div class="sidebar col-md-2" ng-if="UserIsLogin" >
           <div class="profile_holder">
             <img ng-src="/uploads/{{user.image}}" class="img-responsive" />
             <span class="username">{{user.fname}} {{user.lname}}</span>
             <button class="update_profile" ng-click="Profile()">پروفایل</button>
           </div>
-          <div ng-include="MenuSrc" onload="MenuLoaded()"></div>
+          <div ng-include="MenuSrc"></div>
         </div>
         <div class="col-md-10 view" ui-view></div>
       </div>
@@ -71,6 +67,7 @@
     <script type="text/javascript" src="js/Lib/moment-jalaali.js"></script>
     <script type="text/javascript" src="js/Lib/clickoutside.directive.js"></script>
     <script type="text/javascript" src="js/Lib/ng-file-upload.min.js"></script>
+
     <!-- APP JS -->
     <script type="text/javascript" src="js/Angular/app.js"></script>
     <!-- SERVICE FILES -->

@@ -14,8 +14,8 @@ var path        = require('path')
 var crypto      = require('crypto');
 
 
-var jwt    = require('jsonwebtoken');
-var config = require('./config');
+var jwt    		= require('jsonwebtoken');
+var config 		= require('./config');
 
 // =======================
 // upload config =========
@@ -72,7 +72,7 @@ app.use(bodyParser.json());
 
 // use morgan to log requests to the console
 app.use(morgan('dev'));
-// app.use(cors());
+app.use(cors());
 
 app.use(express.static(__dirname + '/public')); 	
 
